@@ -6,7 +6,7 @@ public class quiz {
     private static int numberWrong = 0;
     private static HashMap<String, String> hashmap;
     //use CASESENSITIVE = true if you want to practice capitalization for inputs
-    private final static boolean CASESENSITIVE = true;
+    private final static boolean CASESENSITIVE = false;
     public static void main(String[] args) {
         String filename = "labsafetyterms.txt";
         //filename- put full path if it is not working
@@ -20,7 +20,11 @@ public class quiz {
             }
             for(int i = 0; i < lines.size() - 1; i+=2) {
                 //replace (i) and (i+1) to reverse terms
-                hashmap.put(lines.get(i+1).trim(), lines.get(i).trim());
+                if(CASESENSITIVE){
+                    hashmap.put(lines.get(i+1).trim(), lines.get(i).trim());
+                } else {
+                    hashmap.put(lines.get(i+1).trim().toLowerCase(), lines.get(i).trim().toLowerCase());
+                }
             }
             scanner.close();
             Scanner scanner2 = new Scanner(System.in);
@@ -38,19 +42,19 @@ public class quiz {
             return;
         }
         String key = (String)(hashmap.keySet().toArray()[(int)(Math.random() * (hashmap.size()))]);
-        String element = hashmap.get(key);
+        String value = hashmap.get(key);
         System.out.println(key);
         String input = scanner.nextLine();
         if(!CASESENSITIVE) {
             input = input.toLowerCase();
         }
         if(!input.equals("close")) {
-            if(input.equals(element)) {
+            if(input.equals(value)) {
                 System.out.println("Correct!");
-                hashmap.remove(key, element);
+                hashmap.remove(key, value);
                 numberRight++;
             } else {
-                System.out.println("You're an idiot. The answer was " + element);
+                System.out.println("You're an idiot. The answer was " + value);
                 numberWrong++;
             }
             quizkey(scanner);

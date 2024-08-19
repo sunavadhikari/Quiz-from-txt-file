@@ -35,5 +35,6 @@ public class learn {
                 break;
             }
         }
+        scanner.close();
     }
 }
