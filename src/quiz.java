@@ -8,7 +8,7 @@ public class quiz {
     //use CASESENSITIVE = true if you want to practice capitalization for inputs
     private final static boolean CASESENSITIVE = true;
     public static void main(String[] args) {
-        String filename = "commonelements.txt";
+        String filename = "labsafetyterms.txt";
         //filename- put full path if it is not working
         hashmap = new HashMap<>();
         try{
@@ -20,11 +20,11 @@ public class quiz {
             }
             for(int i = 0; i < lines.size() - 1; i+=2) {
                 //replace (i) and (i+1) to reverse terms
-                hashmap.put(lines.get(i).trim(), lines.get(i+1).trim());
+                hashmap.put(lines.get(i+1).trim(), lines.get(i).trim());
             }
             scanner.close();
             Scanner scanner2 = new Scanner(System.in);
-            quizSymbol(scanner2);
+            quizkey(scanner2);
             if((numberWrong + numberRight) != 0){
                 System.out.println("You got " + numberRight + "/" + (numberRight+numberWrong) + "("+ ((double)(100 * numberRight))/((double)(numberRight + numberWrong)) + "%).");
             }
@@ -33,13 +33,13 @@ public class quiz {
             System.out.println("File was not found.");
         }
     }
-    private static void quizSymbol(Scanner scanner) {
+    private static void quizkey(Scanner scanner) {
         if(hashmap.isEmpty()) {
             return;
         }
-        String symbol = (String)(hashmap.keySet().toArray()[(int)(Math.random() * (hashmap.size()))]);
-        String element = hashmap.get(symbol);
-        System.out.println(symbol);
+        String key = (String)(hashmap.keySet().toArray()[(int)(Math.random() * (hashmap.size()))]);
+        String element = hashmap.get(key);
+        System.out.println(key);
         String input = scanner.nextLine();
         if(!CASESENSITIVE) {
             input = input.toLowerCase();
@@ -47,13 +47,13 @@ public class quiz {
         if(!input.equals("close")) {
             if(input.equals(element)) {
                 System.out.println("Correct!");
-                hashmap.remove(symbol, element);
+                hashmap.remove(key, element);
                 numberRight++;
             } else {
                 System.out.println("You're an idiot. The answer was " + element);
                 numberWrong++;
             }
-            quizSymbol(scanner);
+            quizkey(scanner);
         }
     }
 }
