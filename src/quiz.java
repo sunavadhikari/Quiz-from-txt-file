@@ -7,6 +7,7 @@ public class quiz {
     private static HashMap<String, String> hashmap;
     //use CASESENSITIVE = true if you want to practice capitalization for inputs
     private final static boolean CASESENSITIVE = false;
+    private static int initialSize;
     public static void main(String[] args) {
         String filename = "labsafetyterms.txt";
         //filename- put full path if it is not working
@@ -27,6 +28,7 @@ public class quiz {
                 }
             }
             scanner.close();
+            initialSize = hashmap.size();
             Scanner scanner2 = new Scanner(System.in);
             quizkey(scanner2);
             if((numberWrong + numberRight) != 0){
@@ -49,7 +51,10 @@ public class quiz {
             input = input.toLowerCase();
         }
         if(!input.equals("close")) {
-            if(input.equals(value)) {
+            if(input.equals("/progress")) {
+                System.out.println("You have " + numberRight + "/" + (numberRight+numberWrong) + "("+ ((double)(100 * numberRight))/((double)(numberRight + numberWrong)) + "%). You have completed " +
+                numberRight + " of " + initialSize + " terms.");
+            } else if(input.equals(value)) {
                 System.out.println("Correct!");
                 hashmap.remove(key, value);
                 numberRight++;
