@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class learn {
-    private static String filename = "labsafetyterms.txt";
+    private static String filename = "polyatomics.txt";
     private static HashMap<String, String> hashmap;
     private static int initialSize;
     public static void main(String args[]) {

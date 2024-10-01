@@ -6,10 +6,10 @@ public class quiz {
     private static int numberWrong = 0;
     private static HashMap<String, String> hashmap;
     //use CASESENSITIVE = true if you want to practice capitalization for inputs
-    private final static boolean CASESENSITIVE = false;
+    private final static boolean CASESENSITIVE = true;
     private static int initialSize;
     public static void main(String[] args) {
-        String filename = "labsafetyterms.txt";
+        String filename = "polyatomics.txt";
         //filename- put full path if it is not working
         hashmap = new HashMap<>();
         try{
@@ -22,9 +22,9 @@ public class quiz {
             for(int i = 0; i < lines.size() - 1; i+=2) {
                 //replace (i) and (i+1) to reverse terms
                 if(CASESENSITIVE){
-                    hashmap.put(lines.get(i+1).trim(), lines.get(i).trim());
+                    hashmap.put(lines.get(i).trim(), lines.get(i+1).trim());
                 } else {
-                    hashmap.put(lines.get(i+1).trim().toLowerCase(), lines.get(i).trim().toLowerCase());
+                    hashmap.put(lines.get(i).trim().toLowerCase(), lines.get(i+1).trim().toLowerCase());
                 }
             }
             scanner.close();
